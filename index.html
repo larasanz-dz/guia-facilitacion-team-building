@@ -1,0 +1,816 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Guía del facilitador DZ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=IBM+Plex+Mono:wght@500&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap">
+<style>
+/* Layout: cuaderno de ruta, misma identidad que la agenda. Columna de lectura, índice fijo en escritorio y flotante en móvil. */
+:root{
+  --bg:#EEF1EC; --surface:#FBFCFA; --ink:#18221C; --muted:#56655C; --line:#D3DACF; --soft:#E3E8E0;
+  --accent:#C2362B; --accent-ink:#FFFFFF; --quote:#E7ECE5;
+  --f-display:"Barlow Condensed","Arial Narrow",Arial,sans-serif;
+  --f-body:"Source Sans 3","Segoe UI",system-ui,sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#111713; --surface:#18201B; --ink:#E4EBE6; --muted:#9BABA1; --line:#2B3630; --soft:#202A24;
+  --accent:#EE6352; --accent-ink:#1A0F0D; --quote:#1D2621; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#111713; --surface:#18201B; --ink:#E4EBE6; --muted:#9BABA1; --line:#2B3630; --soft:#202A24;
+  --accent:#EE6352; --accent-ink:#1A0F0D; --quote:#1D2621; color-scheme:dark}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:17px;line-height:1.6}
+.wrap{max-width:1080px;margin:0 auto;padding-inline:16px;padding-block:28px 120px;display:grid;grid-template-columns:220px minmax(0,1fr);gap:40px}
+.side{position:sticky;top:calc(16px + env(safe-area-inset-top,0px));align-self:start;display:grid;gap:4px}
+.side .lbl{margin-bottom:6px}
+.side a{text-decoration:none;padding:5px 10px;border-radius:6px;font-size:.95rem}
+.side a:hover{background:var(--soft)}
+.side a.on{background:var(--surface);box-shadow:inset 3px 0 0 var(--accent);font-weight:600}
+main{min-width:0}
+.head{display:grid;gap:10px;padding-bottom:20px;border-bottom:2px solid var(--ink);margin-bottom:8px}
+.eyebrow,.lbl{font-family:var(--f-mono);font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+h1,h2,h3{font-family:var(--f-display);font-weight:700;line-height:1.1;text-wrap:balance;margin:0}
+h1{font-size:clamp(2.2rem,6vw,3.3rem);text-transform:uppercase}
+.lead{max-width:62ch;font-size:1.08rem}
+.sec{padding-top:44px;scroll-margin-top:16px}
+h2{font-size:clamp(1.6rem,4vw,2.1rem);text-transform:uppercase;display:flex;align-items:center;gap:12px;padding-bottom:8px;border-bottom:1px solid var(--line);margin-bottom:14px;scroll-margin-top:16px}
+h2::before{content:"";flex:none;width:22px;height:14px;border:1px solid var(--line);background:linear-gradient(#fff 50%,var(--accent) 50%)}
+h3{font-size:1.3rem;margin:26px 0 8px;letter-spacing:.01em}
+p{margin:0 0 12px;max-width:68ch}
+ul,ol{margin:0 0 14px;padding-left:1.3rem;max-width:68ch}
+li{margin-bottom:6px}
+a{color:inherit}
+.sub{font-family:var(--f-mono);font-size:.82rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-top:-6px}
+blockquote{margin:10px 0 14px;padding:12px 16px;background:var(--quote);border-left:4px solid var(--accent);border-radius:0 6px 6px 0;max-width:68ch}
+blockquote p{margin:0;font-style:italic}
+.example{border:1px dashed var(--muted);border-radius:6px;padding:10px 14px}
+.tbl{overflow-x:auto;margin:6px 0 18px;background:var(--surface);border:1px solid var(--line);border-radius:6px}
+table{border-collapse:collapse;width:100%;font-size:.95rem}
+th,td{text-align:left;vertical-align:top;padding:9px 12px;border-bottom:1px solid var(--line)}
+tr:last-child td{border-bottom:0}
+th{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:500}
+td:first-child{font-variant-numeric:tabular-nums;font-weight:600}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px;margin-top:8px}
+.cards p{margin:0;background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:12px 14px;font-size:.95rem;max-width:none}
+.cards strong:first-child{font-family:var(--f-display);font-size:1.15rem;letter-spacing:.01em}
+li.ck{list-style:none;margin-left:-1.3rem}
+li.ck label{display:grid;grid-template-columns:22px 1fr;gap:10px;cursor:pointer;padding:3px 4px;border-radius:6px}
+li.ck label:hover{background:var(--soft)}
+li.ck input{width:18px;height:18px;margin-top:4px;accent-color:var(--accent)}
+li.ck input:checked+span{color:var(--muted);text-decoration:line-through}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px}
+.fab{display:none;position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:20;align-items:center;gap:8px;font:700 1rem var(--f-display);letter-spacing:.05em;text-transform:uppercase;color:var(--accent-ink);background:var(--accent);border:0;border-radius:999px;padding:12px 18px;cursor:pointer;box-shadow:0 6px 18px rgba(0,0,0,.18)}
+.menu{position:fixed;right:16px;bottom:calc(76px + env(safe-area-inset-bottom,0px));z-index:20;width:min(300px,calc(100vw - 32px));background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:12px;display:grid;gap:2px;box-shadow:0 12px 32px rgba(0,0,0,.22)}
+.menu a{text-decoration:none;padding:7px 10px;border-radius:6px}
+.menu a:hover{background:var(--soft)}
+@media (max-width:820px){.wrap{grid-template-columns:1fr} .side{display:none} .fab{display:flex}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+<div class="wrap">
+  <nav class="side" aria-label="Índice"><span class="lbl">Índice</span><a href="#agenda">Agenda de un vistazo</a><a href="#principios">Principios</a><a href="#antes">Antes del evento</a><a href="#bloques">Bloque a bloque</a><a href="#valores">Taller de valores</a><a href="#escucha">Taller de escucha</a><a href="#dificiles">Situaciones difíciles</a><a href="#despues">Después del encuentro</a></nav>
+  <main>
+    <header class="head">
+      <span class="eyebrow">Desafío Zero · Encuentro de equipo · 10–12 oct · 15 personas</span>
+      <h1>Guía del facilitador</h1>
+      <p class="lead">Cómo llevar cada dinámica: principios, preparación, trucos, riesgos y, en detalle, los talleres de valores y de escucha. Las casillas se guardan solo en este navegador.</p>
+    </header>
+    <section class="sec"><h2 id="agenda" class="break">Agenda de un vistazo</h2>
+
+<p>Desayuno 9:00–10:00 · Comida 14:00–15:30 · Cena 21:00. Oliver lleva logística y tiempos.</p>
+<h3>Sábado 10 · Conexión</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>Hora</th>
+<th>Bloque</th>
+<th>Lidera</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>13:00</td>
+<td>Bienvenida y entrega de camisetas</td>
+<td>Por asignar</td>
+</tr>
+<tr>
+<td>14:00</td>
+<td>Comida con mesas mezcladas</td>
+<td>—</td>
+</tr>
+<tr>
+<td>15:30</td>
+<td>Dinámica de conexión: nombres, tarjetas y línea del tiempo</td>
+<td>Por asignar</td>
+</tr>
+<tr>
+<td>16:30</td>
+<td>Pausa</td>
+<td>—</td>
+</tr>
+<tr>
+<td>16:45</td>
+<td>Taller de primeros auxilios (3 h)</td>
+<td>Instructor</td>
+</tr>
+<tr>
+<td>19:45</td>
+<td>Tiempo libre · entrevistas para redes</td>
+<td>Redes</td>
+</tr>
+<tr>
+<td>21:00</td>
+<td>Cena</td>
+<td>—</td>
+</tr>
+<tr>
+<td>22:15</td>
+<td>Noche libre junto al fuego</td>
+<td>Nadie</td>
+</tr>
+</tbody>
+</table></div>
+<h3>Domingo 11 · Experiencia, valores y empresa</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>Hora</th>
+<th>Bloque</th>
+<th>Lidera</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>10:00</td>
+<td>Dinámica de orientación (3 h)</td>
+<td>Organizador</td>
+</tr>
+<tr>
+<td>13:00</td>
+<td>Puesta en común de la orientación</td>
+<td>Por asignar</td>
+</tr>
+<tr>
+<td>13:20</td>
+<td>Tiempo libre · vídeos cortos para redes</td>
+<td>Redes</td>
+</tr>
+<tr>
+<td>14:00</td>
+<td>Comida</td>
+<td>—</td>
+</tr>
+<tr>
+<td>15:30</td>
+<td>Taller de valores (75')</td>
+<td>Ya asignado</td>
+</tr>
+<tr>
+<td>16:45</td>
+<td>Pausa</td>
+<td>—</td>
+</tr>
+<tr>
+<td>17:00</td>
+<td>Situación de la empresa y cambios internos</td>
+<td>Dirección</td>
+</tr>
+<tr>
+<td>18:00</td>
+<td>Presentación de los equipos internos</td>
+<td>2 por equipo</td>
+</tr>
+<tr>
+<td>18:45</td>
+<td>Merienda</td>
+<td>—</td>
+</tr>
+<tr>
+<td>19:00</td>
+<td>Contrato de viaje con el abogado</td>
+<td>Abogado + líder</td>
+</tr>
+<tr>
+<td>20:00</td>
+<td>Tiempo libre</td>
+<td>—</td>
+</tr>
+<tr>
+<td>21:00</td>
+<td>Cena y fiesta</td>
+<td>—</td>
+</tr>
+</tbody>
+</table></div>
+<h3>Lunes 12 · Escucha y cierre</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>Hora</th>
+<th>Bloque</th>
+<th>Lidera</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>10:00</td>
+<td>Ronda de inicio (5')</td>
+<td>Por asignar</td>
+</tr>
+<tr>
+<td>10:05</td>
+<td>Taller de escucha y acuerdos (70')</td>
+<td>Por asignar</td>
+</tr>
+<tr>
+<td>11:15</td>
+<td>Pausa</td>
+<td>—</td>
+</tr>
+<tr>
+<td>11:20</td>
+<td>Cierre: me he dado cuenta y agradezco</td>
+<td>Por asignar</td>
+</tr>
+<tr>
+<td>12:00</td>
+<td>Fin</td>
+<td>—</td>
+</tr>
+</tbody>
+</table></div>
+</section><section class="sec"><h2 id="principios" class="break">1 · Principios para quien facilite</h2>
+
+<p>Quien facilita no es protagonista: sostiene el espacio para que el equipo hable. Cada dinámica la lidera una persona.</p>
+<p><strong>La base del fin de semana:</strong> pasarlo bien juntos. Todo lo demás se apoya en eso.</p>
+<p><strong>Actitud</strong></p>
+<ul>
+<li>Habla poco y escucha mucho. Si hablas más que el grupo, algo va mal.</li>
+<li>Consignas cortas: si una explicación no cabe en tres frases, se simplifica.</li>
+<li>Neutralidad: no opines sobre lo que sale, ni con palabras ni con gestos. Un "¡qué bueno!" a unos y silencio a otros ya es opinar.</li>
+<li>Aguanta el silencio. Cuenta mentalmente hasta 10 antes de rellenarlo; casi siempre alguien habla.</li>
+<li>Participa poco en lo que facilitas. Si también tienes que escribir o votar, hazlo el último.</li>
+<li>Respeta a quien no quiere hablar. Escuchar también es participar.</li>
+</ul>
+<p><strong>Trucos que valen para todo</strong></p>
+<ul>
+<li>Explica, haz una demostración y después pregunta "¿dudas?". Dar ejemplo tú primero marca el tono y la duración.</li>
+<li>Escribe las consignas en un cartel. La gente olvida lo que oye, no lo que ve.</li>
+<li>Avisa del tiempo: "quedan 2 minutos". Usa la campanilla, no la voz.</li>
+<li>Cuando alguien acapara: "Gracias. Me gustaría oír a alguien que aún no ha hablado."</li>
+<li>Cuando algo se alarga: "Lo apunto para no perderlo y seguimos." Ten a mano un cartel de pendientes.</li>
+<li>Mueve a la gente: nadie más de 45–60' sentado sin cambiar de sitio o de formato.</li>
+<li>Cierra cada bloque con algo visible: una foto, un cartel, una frase.</li>
+</ul>
+<p><strong>Frases que no ayudan</strong></p>
+<ul>
+<li>"Esto es un espacio seguro." La seguridad se demuestra, no se anuncia.</li>
+<li>"Esto lo tendremos en cuenta." El equipo lo traduce como "no".</li>
+<li>"Venga, un poco más." Si la energía está baja, se acorta.</li>
+<li>"¿Quién ha escrito esto?" Nunca, y menos con lo anónimo.</li>
+</ul>
+</section><section class="sec"><h2 id="antes" class="break">2 · Antes del evento</h2>
+
+<p>Con 30' de preparación por dinámica basta, si se hace antes de llegar y no improvisando en la sala.</p>
+<p><strong>Cada persona que lidera una dinámica</strong></p>
+<ul>
+<li class="ck"><label><input type="checkbox" id="ck1"><span>Lee su ficha en la agenda y la dice en voz alta una vez, cronometrando.</span></label></li>
+<li class="ck"><label><input type="checkbox" id="ck2"><span>Escribe sus consignas en un cartel o una tarjeta: máximo tres frases.</span></label></li>
+<li class="ck"><label><input type="checkbox" id="ck3"><span>Prepara la frase de inicio y la de cierre. Son las dos que más se recuerdan.</span></label></li>
+<li class="ck"><label><input type="checkbox" id="ck4"><span>Sabe qué hace si va tarde: qué parte recorta.</span></label></li>
+<li class="ck"><label><input type="checkbox" id="ck5"><span>Revisa con Oliver que el material de su bloque está en la caja del día.</span></label></li>
+</ul>
+<p><strong>El jueves, en el reparto</strong></p>
+<ul>
+<li class="ck"><label><input type="checkbox" id="ck6"><span>Nadie lidera dos dinámicas seguidas: así descansa y participa.</span></label></li>
+<li class="ck"><label><input type="checkbox" id="ck7"><span>Cada dinámica tiene una persona que lidera y otra de apoyo (reparte material, apunta, controla el tiempo).</span></label></li>
+<li class="ck"><label><input type="checkbox" id="ck8"><span>Dirección no lidera el taller de escucha: es parte de lo que se escucha.</span></label></li>
+<li class="ck"><label><input type="checkbox" id="ck9"><span>Acordar una señal común para "vamos tarde" entre Oliver y quien lidera.</span></label></li>
+</ul>
+<p><strong>El sábado al llegar</strong></p>
+<ul>
+<li class="ck"><label><input type="checkbox" id="ck10"><span>Ver los espacios: dónde se camina, dónde se pega en la pared, dónde va el fuego.</span></label></li>
+<li class="ck"><label><input type="checkbox" id="ck11"><span>Probar el proyector y el altavoz.</span></label></li>
+<li class="ck"><label><input type="checkbox" id="ck12"><span>Colocar la urna con su cartel antes de la apertura.</span></label></li>
+</ul>
+</section><section class="sec"><h2 id="bloques" class="break">3 · Bloque a bloque</h2>
+
+<p>Consejos breves para cada dinámica. Los talleres de valores y de escucha tienen su propia sección.</p>
+<div class="cards">
+<p><strong>Bienvenida y camisetas</strong> · sáb. 13:00<br />
+Truco: esperar a que haya llegado casi todo el mundo; apertura de 10', no más.<br />
+Riesgo: alargarse explicando la empresa.<br />
+Si pasa: "Eso lo contamos el domingo; hoy toca pasarlo bien."</p>
+<p><strong>Ronda de nombres</strong><br />
+Truco: empieza quien lidera, con una respuesta corta y con humor.<br />
+Riesgo: respuestas largas que eternizan el círculo.<br />
+Si pasa: "Una frase, que somos 15."</p>
+<p><strong>Tarjetas en movimiento (juego de la silla)</strong><br />
+Truco: música con ritmo y paradas imprevisibles; cambiar a tríos a mitad.<br />
+Riesgo: que se junten siempre los mismos.<br />
+Si pasa: "Esta vez, con alguien con quien aún no hayas hablado."</p>
+<p><strong>Reto de la línea del tiempo</strong><br />
+Truco: cuenta atrás y no ayudar; el caos inicial es parte del juego.<br />
+Riesgo: que alguien hable.<br />
+Si pasa: con humor, "Sin hablar… ¡quedan 3 minutos!"</p>
+<p><strong>Ola para redes</strong><br />
+Truco: ensayar una vez, grabar la segunda. Del más veterano al más nuevo.<br />
+Riesgo: repetirla hasta que deja de ser divertida.<br />
+Si pasa: máximo tres tomas.</p>
+<p><strong>Primeros auxilios</strong><br />
+Truco: lo lleva el instructor; quien lidera abre con una frase y cuida los tiempos.<br />
+Riesgo: que se convierta en charla.<br />
+Si pasa: pedir más práctica y menos teoría.</p>
+<p><strong>Noche junto al fuego</strong><br />
+Truco: no organizar nada; si surge, invitación abierta a contar historias.<br />
+Riesgo: convertirlo en dinámica.<br />
+Si pasa: guitarra y dejar que fluya.</p>
+<p><strong>Orientación</strong> · dom. 10:00<br />
+Truco: pedir al organizador grupos mezclados.<br />
+Riesgo: grupos por amistad.<br />
+Si pasa: proponer mezclar antes de empezar.</p>
+<p><strong>Puesta en común de la orientación</strong><br />
+Truco: hechos, no conclusiones: qué pasó y cómo decidisteis.<br />
+Riesgo: cansancio y ganas de ducha.<br />
+Si pasa: acortar a 10' y llevar las preguntas al taller de valores.</p>
+<p><strong>Situación de la empresa</strong><br />
+Truco: 10' por presentador, ensayado; más imágenes que texto.<br />
+Riesgo: que se alargue o suene a reunión.<br />
+Si pasa: encargado de tiempos con campanilla.</p>
+<p><strong>Equipos internos</strong><br />
+Truco: 5' por equipo con el mismo guion de cuatro preguntas.<br />
+Riesgo: equipos que presentan organigramas.<br />
+Si pasa: pedir un ejemplo real: un correo, una llamada, una publicación.</p>
+<p><strong>Abogado</strong><br />
+Truco: casos reales, no cláusulas.<br />
+Riesgo: energía baja a última hora.<br />
+Si pasa: grupos de pie con los casos impresos.</p>
+<p><strong>Cierre "me he dado cuenta y agradezco"</strong> · lun. 11:20<br />
+Truco: empieza quien lidera, con un ejemplo corto y concreto.<br />
+Riesgo: agradecimientos genéricos ("a todos").<br />
+Si pasa: "Dime a quién y por qué."</p>
+</div>
+</section><section class="sec"><h2 id="valores" class="break">4 · Taller de valores</h2>
+
+<p class="sub">Momentos cumbre y subasta · domingo 15:30 · 75'</p>
+
+<p>El resultado es un listado amplio de los valores que el equipo percibe y quiere, ordenado por lo que se ha "pagado" en la subasta. Aquí no se decide nada: después, dirección elige los 5 valores de DZ a partir de este listado.</p>
+<h3>Qué hay que tener listo</h3>
+<ul>
+<li class="ck"><label><input type="checkbox" id="ck13"><span>Cartel con las cuatro preguntas, visible desde todas las sillas.</span></label></li>
+<li class="ck"><label><input type="checkbox" id="ck14"><span>Post-its (unos 60) y un rotulador por persona.</span></label></li>
+<li class="ck"><label><input type="checkbox" id="ck15"><span>Folios en blanco (unos 15) y un rotulador grueso.</span></label></li>
+<li class="ck"><label><input type="checkbox" id="ck16"><span>Tres hojas de "banco", una por grupo, con "100 puntos" escrito arriba.</span></label></li>
+<li class="ck"><label><input type="checkbox" id="ck17"><span>Algo que haga de mazo.</span></label></li>
+<li class="ck"><label><input type="checkbox" id="ck18"><span>Suelo o mesa grande despejada para agrupar.</span></label></li>
+<li class="ck"><label><input type="checkbox" id="ck19"><span>Una persona de apoyo: reparte material, anota precios y hace la foto final.</span></label></li>
+</ul>
+<h3>Preguntas del cartel</h3>
+<ol>
+<li>¿Cuándo has sentido más orgullo de estar en Desafío Zero?</li>
+<li>¿Qué hacías tú y qué hacían los demás en ese momento?</li>
+<li>¿Qué hizo posible que saliera así?</li>
+<li>Y mirando adelante: ¿qué tendríamos que ser o hacer mejor para llegar a donde queremos ir?</li>
+</ol>
+<h3>0–7' · Calentamiento "Si DZ fuera…"</h3>
+<blockquote>
+<p>"Antes de empezar, una ronda rápida. Si Desafío Zero fuera un animal, una canción o una persona, ¿qué sería y por qué? Una frase cada uno. Empiezo yo."</p>
+</blockquote>
+<ul>
+<li>Empieza quien lidera, con una respuesta corta y con un porqué claro.</li>
+<li>La persona de apoyo apunta en post-its las palabras de los porqués ("porque nunca deja a nadie atrás" → "no dejar a nadie atrás"). Se suman al material de las entrevistas.</li>
+<li>La risa relaja antes de hablar de algo personal.</li>
+</ul>
+<h3>7–28' · Entrevistas en parejas</h3>
+<blockquote>
+<p>"Ahora por parejas, con alguien con quien hayas hablado poco este finde. Uno entrevista y el otro cuenta, 9 minutos; luego cambiáis. Quien entrevista solo pregunta y escucha: no opina, no cuenta su historia, no da consejos."</p>
+</blockquote>
+<ul>
+<li>No hace falta hacer todas las preguntas ni en orden.</li>
+<li>Para tirar del hilo: "¿Y qué hiciste entonces?", "¿Qué sentiste?", "¿Qué hacían los demás?".</li>
+<li>Avisa a los 8' ("queda un minuto") y a los 9' ("cambio de papel").</li>
+<li>Al terminar: "Cada uno escribe 3 post-its sobre la historia que ha oído, no la suya. Una idea por post-it, letra grande y, a ser posible, empezando por un verbo: 'esperó al último', 'dijo la verdad al cliente'."</li>
+<li>Enseña un post-it bueno y uno malo ("compromiso" frente a "se quedó hasta las 2 para cerrar el grupo"). Es lo que más mejora lo que sale.</li>
+</ul>
+<h3>28–40' · Agrupar en silencio</h3>
+<blockquote>
+<p>"Todos los post-its al suelo. Durante 8 minutos, sin hablar, los movemos hasta formar grupos de cosas que se parecen. Podéis mover los vuestros y los de los demás. Si uno encaja en dos sitios, se queda entre los dos."</p>
+</blockquote>
+<ul>
+<li>El silencio evita que las voces fuertes decidan.</li>
+<li>Si alguien habla, recuérdalo con una sonrisa y un gesto.</li>
+<li>Cuando se estabilizan: "¿Qué nombre le pondríais a este grupo?". Dos o tres propuestas y el grupo elige.</li>
+<li>Cada valor, en grande en un folio. Salen unos 10–12; si salen más de 14, junta los muy parecidos.</li>
+<li>Evita nombres genéricos: "¿Qué diríamos para que se entienda que es nuestro?". "No dejamos a nadie atrás" dice más que "compañerismo".</li>
+</ul>
+<h3>40–45' · Estrategia</h3>
+<blockquote>
+<p>"Ahora 3 grupos de 5. Cada grupo tiene 100 puntos para comprar los valores que considera imprescindibles para DZ, ahora y hacia donde queremos ir. Hay 300 puntos para unos 12 valores: no da para todo. Tenéis 5 minutos para decidir qué queréis de verdad y cuánto pagaríais."</p>
+</blockquote>
+<ul>
+<li>Grupos mezclados. Si hay alguien de dirección, cada uno en un grupo distinto.</li>
+<li>Recorre los grupos y escucha: lo que discuten aquí es oro.</li>
+</ul>
+<h3>45–60' · Subasta</h3>
+<blockquote>
+<p>"Os leo un valor y pregunto quién da 10. Se puja levantando la mano y diciendo la cifra, de 10 en 10, siempre más que la anterior. Cuando nadie sube: a la una, a las dos, a las tres, vendido. No podéis gastar más de lo que os queda."</p>
+</blockquote>
+<ul>
+<li>Es un juego: mazo, ritmo y algo de teatro ("¡Cuidado del grupo, señoras y señores!").</li>
+<li>Orden de los valores al azar, para no dirigir.</li>
+<li>La persona de apoyo apunta en un cartel: valor, grupo y precio.</li>
+<li>Empate en la misma cifra: gana la primera mano; si hay duda, se vuelve a pujar.</li>
+<li>Si nadie puja: "Queda desierto", y se aparta sin comentar.</li>
+<li>Un grupo sin puntos pronto: no pasa nada, también es información.</li>
+</ul>
+<p class="example"><b>Ejemplo.</b> "Cuidado del grupo, ¿quién da 10?" A: 10. B: 20. A: 40. Nadie sube: vendido a A por 40, que apunta "Cuidado del grupo: 40" y se queda con 60.</p>
+
+<h3>60–65' · Por qué lo comprasteis</h3>
+<p>Folios en el suelo de más caro a más barato, desiertos al final.</p>
+<ul>
+<li>"¿Por qué pagasteis tanto por este?"</li>
+<li>"¿Cuál no quiso nadie, y por qué?"</li>
+<li>"¿Qué os ha sorprendido?"</li>
+</ul>
+<p>Es lo más valioso para dirección: apunta frases literales.</p>
+<h3>65–75' · Listado final y cierre</h3>
+<ul>
+<li>Foto cenital de todos los folios ordenados, incluidos los desiertos. Ese es el resultado.</li>
+<li>Si da tiempo, para los más caros: "¿Cómo se nota en el día a día?".</li>
+</ul>
+<blockquote>
+<p>"Este es el listado de lo que sois y queréis ser. Con él, dirección elegirá los 5 valores de Desafío Zero y os lo contará. Gracias por la sinceridad."</p>
+</blockquote>
+<h3>Trucos</h3>
+<ul>
+<li>La calidad depende de los post-its: invierte tiempo en el ejemplo bueno y el malo.</li>
+<li>Durante las entrevistas no hables: pasea y solo intervienes si una pareja se atasca.</li>
+<li>Sin historia de orgullo: "Vale una pequeña, de un día cualquiera" o "¿Y una vez que viste a alguien hacer algo muy DZ?".</li>
+<li>Si una historia emociona, deja espacio.</li>
+<li>No corrijas palabras ni nombres: si el equipo lo llama así, se queda así.</li>
+<li>Humor en la subasta, sin ridiculizar ninguna puja.</li>
+</ul>
+<h3>Riesgos</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>Riesgo</th>
+<th>Qué hacer</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Palabras genéricas ("compromiso", "calidad")</td>
+<td>"¿Qué hizo exactamente esa persona?" y reescribir con verbo</td>
+</tr>
+<tr>
+<td>Historias en negativo</td>
+<td>"¿Y qué hizo falta para que saliera bien?"</td>
+</tr>
+<tr>
+<td>Dirección condiciona</td>
+<td>Repartirla en grupos distintos; habla la última</td>
+</tr>
+<tr>
+<td>Subasta como pura competición</td>
+<td>"Pagad por lo que de verdad creéis imprescindible"</td>
+</tr>
+<tr>
+<td>Más de 14 valores</td>
+<td>Juntar parecidos antes de subastar</td>
+</tr>
+<tr>
+<td>Falta tiempo</td>
+<td>Entrevistas de 7', estrategia 3', "por qué" 3'. Nunca recortar la subasta ni la foto</td>
+</tr>
+</tbody>
+</table></div>
+<h3>Qué guardar</h3>
+<ul>
+<li class="ck"><label><input type="checkbox" id="ck20"><span>Foto del suelo con los folios ordenados.</span></label></li>
+<li class="ck"><label><input type="checkbox" id="ck21"><span>Cartel de la subasta (valor, grupo y precio).</span></label></li>
+<li class="ck"><label><input type="checkbox" id="ck22"><span>Frases literales de "por qué lo comprasteis".</span></label></li>
+<li class="ck"><label><input type="checkbox" id="ck23"><span>Fotos de los grupos de post-its antes de nombrarlos.</span></label></li>
+</ul>
+<div class="ln"></div>
+<div class="ln"></div>
+<div class="ln"></div>
+<div class="ln"></div>
+<div class="ln"></div>
+<div class="ln"></div>
+<div class="ln"></div>
+<div class="ln"></div>
+<div class="ln"></div>
+<div class="ln"></div>
+<div class="ln"></div>
+<div class="ln"></div>
+<div class="ln"></div>
+<div class="ln"></div>
+<div class="ln"></div>
+<div class="ln"></div>
+<div class="ln"></div>
+</div>
+</section><section class="sec"><h2 id="escucha" class="break">5 · Taller de escucha y acuerdos</h2>
+
+<p class="sub">Urna anónima y pared · lunes 10:05 · 70'</p>
+
+<p>El resultado son 3 acuerdos de equipo firmados por todos y una lista de preguntas pendientes que dirección contesta por escrito en 7 días.</p>
+<p>La <strong>urna</strong> recoge lo que nadie diría en voz alta; la <strong>pared</strong> construye, a la vista de todos, cómo queremos comunicarnos y trabajar.</p>
+<h3>Qué hay que tener listo</h3>
+<ul>
+<li class="ck"><label><input type="checkbox" id="ck24"><span>La urna con su cartel, papelitos y bolígrafos iguales, desde la apertura del sábado.</span></label></li>
+<li class="ck"><label><input type="checkbox" id="ck25"><span>Kraft en la pared con tres columnas: seguir haciendo, empezar a hacer, dejar de hacer.</span></label></li>
+<li class="ck"><label><input type="checkbox" id="ck26"><span>Cartel con las preguntas guía al lado de la pared.</span></label></li>
+<li class="ck"><label><input type="checkbox" id="ck27"><span>Post-its, rotuladores, pegatinas (3 por persona) y cartulina grande para los acuerdos.</span></label></li>
+<li class="ck"><label><input type="checkbox" id="ck28"><span>Altavoz con música tranquila.</span></label></li>
+<li class="ck"><label><input type="checkbox" id="ck29"><span>Una persona de apoyo: saca papelitos, apunta pendientes y hace fotos.</span></label></li>
+</ul>
+<h3>Quién hace qué</h3>
+<ul>
+<li><strong>Quien lidera</strong> no es de dirección: dirección es parte de lo que se escucha.</li>
+<li><strong>Dirección</strong> escucha y solo habla para responder a las preguntas de la urna. Pactadlo antes: 1–2', sin justificarse y sin "es que…".</li>
+<li>Si no sabe una respuesta: "No lo sé ahora; te lo contesto por escrito antes del lunes 19".</li>
+</ul>
+<h3>0–5' · Introducción</h3>
+<blockquote>
+<p>"Este es el rato de escucharnos. Primero, lo que habéis dejado en la urna; después, cómo queremos trabajar juntos. Lo que no dé tiempo a tratar hoy se responde por escrito en 7 días. Nadie va a intentar saber quién ha escrito qué."</p>
+</blockquote>
+<h3>5–20' · La urna</h3>
+<ul>
+<li>La persona de apoyo saca papelitos al azar; quien lidera los lee tal cual, sin suavizar ni comentar.</li>
+<li>Pregunta: dirección responde en 1–2'. Preocupación: "gracias, queda anotado". Por qué me iría: se lee igual.</li>
+<li>Lo que no dé tiempo se guarda entero para la respuesta por escrito.</li>
+<li>Si señala a una persona concreta, no se lee: "Hay un mensaje sobre una persona; lo tratará dirección en privado".</li>
+<li>Urna casi vacía: se agradece y se pasa a la pared.</li>
+</ul>
+<h3>20–35' · La pared</h3>
+<blockquote>
+<p>"Ahora, 15 minutos para escribir en post-its lo que necesitamos para comunicarnos y trabajar mejor. Una idea por post-it. Tres columnas: qué seguimos haciendo, qué empezamos a hacer y qué dejamos de hacer. Tenéis preguntas de ayuda en el cartel."</p>
+</blockquote>
+<ul>
+<li>Música tranquila y sin conversaciones.</li>
+<li>Empezar por "seguir haciendo": lo bueno da seguridad para lo demás.</li>
+<li>Si alguien se bloquea, señala una pregunta del cartel.</li>
+</ul>
+<p><strong>Preguntas guía</strong></p>
+<ul>
+<li>¿Qué necesitas de los demás para hacer bien tu trabajo?</li>
+<li>¿Qué nos funciona cuando nos comunicamos en remoto y qué no?</li>
+<li>¿Cómo quieres enterarte de las decisiones y los cambios que te afectan?</li>
+<li>¿Qué canal usamos para qué (WhatsApp, correo, llamadas) y qué se pierde?</li>
+<li>¿Qué te ha frustrado este año en cómo nos coordinamos?</li>
+<li>¿Cómo hacemos que quien colabora una o dos veces al año se sienta parte?</li>
+<li>¿Qué haríamos distinto si nos viéramos todos los días?</li>
+<li>¿Qué te comprometes a hacer tú a partir del martes?</li>
+</ul>
+<h3>35–42' · Agrupar</h3>
+<ul>
+<li>Quien lidera y dos voluntarios juntan repetidos en cada columna y ponen un título corto.</li>
+<li>Lee los temas en voz alta mientras agrupas.</li>
+</ul>
+<h3>42–47' · Votar</h3>
+<blockquote>
+<p>"Todo lo que hay en esta pared entra en el acuerdo de equipo completo, que recibiréis por escrito. Ahora elegimos solo los 3 temas que trabajamos hoy. Tres pegatinas cada uno; podéis poner varias en el mismo tema."</p>
+</blockquote>
+<ul>
+<li>Todos a la vez, no por turnos.</li>
+</ul>
+<h3>47–62' · Escribir los acuerdos</h3>
+<p>Tres grupos mezclados, uno por tema: "Cuando…, nosotros…" y qué haremos en concreto desde el martes.</p>
+<p>Un buen acuerdo es:</p>
+<ul>
+<li><strong>Observable:</strong> "Nos comunicamos mejor" no vale; "Las decisiones que afectan a líderes se cuentan por correo antes de publicarse" sí.</li>
+<li><strong>De todos:</strong> incluye a dirección.</li>
+<li><strong>Pequeño:</strong> mejor uno que se cumpla que tres ambiciosos.</li>
+</ul>
+<p>Pregunta en cada grupo: "¿Cómo sabremos en un mes si lo estamos cumpliendo?".</p>
+<h3>62–70' · Aprobar y firmar</h3>
+<ul>
+<li>Cada grupo lee su acuerdo. Votación con la mano, todos a la vez: 5 dedos "total acuerdo", 0 "no puedo con esto".</li>
+<li>Quien marque 0 o 1 propone un cambio que le permita aceptarlo; si el grupo lo acepta, se aprueba.</li>
+<li>Los 3 acuerdos, en grande en la cartulina; firma todo el mundo. Foto.</li>
+</ul>
+<blockquote>
+<p>"Estos son nuestros tres primeros acuerdos. El resto de la pared y lo que no se ha leído de la urna os llega por escrito antes del lunes 19."</p>
+</blockquote>
+<h3>Escucha activa: recordar a todos</h3>
+<ul>
+<li>Escuchar para entender, no para responder.</li>
+<li>Resumir antes de opinar: "Lo que entiendo es…, ¿es así?".</li>
+<li>Preguntar antes de suponer: "¿Qué pasó exactamente?".</li>
+<li>No interrumpir ni defenderse; agradecer lo difícil.</li>
+</ul>
+<h3>Riesgos</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>Riesgo</th>
+<th>Qué hacer</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Dirección se defiende</td>
+<td>"Eso, en la respuesta por escrito". Después, 2' en privado</td>
+</tr>
+<tr>
+<td>Papelito muy duro</td>
+<td>Leerlo igual y "Gracias por decirlo"</td>
+</tr>
+<tr>
+<td>Mensaje sobre una persona</td>
+<td>No leerlo; tratarlo en privado</td>
+</tr>
+<tr>
+<td>Buscar al autor</td>
+<td>"Aquí no buscamos quién; buscamos qué hay detrás"</td>
+</tr>
+<tr>
+<td>Todo en positivo</td>
+<td>Leer un papelito que pida un cambio y preguntar qué haría falta</td>
+</tr>
+<tr>
+<td>Todo es queja</td>
+<td>"Si mañana cambiara una sola cosa, ¿cuál?"</td>
+</tr>
+<tr>
+<td>Acuerdos vagos</td>
+<td>"¿Qué haríamos distinto el martes por la mañana?"</td>
+</tr>
+<tr>
+<td>Falta tiempo</td>
+<td>Cortar la urna a los 15'. Nunca recortar la firma</td>
+</tr>
+</tbody>
+</table></div>
+<h3>Qué guardar</h3>
+<ul>
+<li class="ck"><label><input type="checkbox" id="ck30"><span>Todos los papelitos de la urna, incluidos los no leídos.</span></label></li>
+<li class="ck"><label><input type="checkbox" id="ck31"><span>Lista de preguntas pendientes.</span></label></li>
+<li class="ck"><label><input type="checkbox" id="ck32"><span>Foto de la pared completa y de los grupos.</span></label></li>
+<li class="ck"><label><input type="checkbox" id="ck33"><span>Cartulina con los 3 acuerdos firmados.</span></label></li>
+</ul>
+<div class="ln"></div>
+<div class="ln"></div>
+<div class="ln"></div>
+<div class="ln"></div>
+<div class="ln"></div>
+<div class="ln"></div>
+<div class="ln"></div>
+<div class="ln"></div>
+<div class="ln"></div>
+<div class="ln"></div>
+<div class="ln"></div>
+<div class="ln"></div>
+<div class="ln"></div>
+<div class="ln"></div>
+<div class="ln"></div>
+<div class="ln"></div>
+<div class="ln"></div>
+</div>
+</section><section class="sec"><h2 id="dificiles" class="break">6 · Situaciones difíciles</h2>
+
+<p>Lo más probable no es un conflicto, sino el cansancio del domingo por la tarde y que dirección se defienda en la escucha.</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>Situación</th>
+<th>Respuesta</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Alguien acapara</td>
+<td>"Gracias. Me gustaría oír a alguien que aún no ha hablado." Pasar a parejas</td>
+</tr>
+<tr>
+<td>Alguien no participa</td>
+<td>No señalarle. Más parejas; escuchar también es participar</td>
+</tr>
+<tr>
+<td>Silencio general</td>
+<td>Aguantar 10'' más. Luego: "Hablad 2' con quien tengáis al lado"</td>
+</tr>
+<tr>
+<td>Conflicto abierto</td>
+<td>"Aquí hay algo importante." Separar qué pasó, qué efecto tuvo y qué se pide. Si no cabe, se agenda con fecha</td>
+</tr>
+<tr>
+<td>Crítica fuerte a dirección</td>
+<td>Reformularla como tema, no como persona, y apuntarla. Respuesta por escrito</td>
+</tr>
+<tr>
+<td>Alguien se emociona</td>
+<td>Pausa, agradecer, dejar espacio</td>
+</tr>
+<tr>
+<td>Energía baja</td>
+<td>Levantarse, cambiar de sitio, acortar. Nunca "venga, un poco más"</td>
+</tr>
+<tr>
+<td>Alguien no quiere participar</td>
+<td>Respetarlo sin preguntar. Ofrecer tomar tiempos o hacer fotos</td>
+</tr>
+<tr>
+<td>La dinámica "no funciona"</td>
+<td>Reconocerlo con humor y pasar a una conversación sencilla</td>
+</tr>
+<tr>
+<td>Vamos tarde</td>
+<td>"Quedan 3'. ¿Qué necesitamos cerrar antes de parar?"</td>
+</tr>
+<tr>
+<td>Alcohol</td>
+<td>Moderación las dos noches; café listo a las 9:00 del lunes</td>
+</tr>
+</tbody>
+</table></div>
+</section><section class="sec"><h2 id="despues" class="break">7 · Después del encuentro</h2>
+
+<p>Si lo prometido no llega, el equipo no volverá a hablar con sinceridad.</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>Cuándo</th>
+<th>Qué</th>
+<th>Quién</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Lunes 12, antes de las 20:00</td>
+<td>Fotos, listado de valores, urna, pared y acuerdos en el Drive</td>
+<td>Quien lideró cada taller</td>
+</tr>
+<tr>
+<td>Lunes 19</td>
+<td>Respuesta por escrito a la urna; los 3 acuerdos, enviados a todos</td>
+<td>Dirección</td>
+</tr>
+<tr>
+<td>+2 semanas</td>
+<td>Dirección elige los 5 valores a partir del listado</td>
+<td>Dirección</td>
+</tr>
+<tr>
+<td>+3–4 semanas</td>
+<td>Acuerdo de equipo completo con todo lo de la pared</td>
+<td>Dirección</td>
+</tr>
+<tr>
+<td>+6 semanas</td>
+<td>Valores publicados, contando de dónde salen</td>
+<td>Dirección</td>
+</tr>
+<tr>
+<td>Cada trimestre</td>
+<td>Revisar los acuerdos en la reunión de equipo</td>
+<td>Todo el equipo</td>
+</tr>
+</tbody>
+</table></div>
+<p>Al comunicar los 5 valores, explicad por qué se eligieron esos y qué pasó con los demás del listado.</p>
+<div class="ln"></div>
+<div class="ln"></div>
+<div class="ln"></div>
+<div class="ln"></div>
+<div class="ln"></div>
+<div class="ln"></div>
+<div class="ln"></div>
+<div class="ln"></div>
+<div class="ln"></div>
+<div class="ln"></div>
+<div class="ln"></div>
+<div class="ln"></div>
+<div class="ln"></div>
+<div class="ln"></div>
+<div class="ln"></div>
+<div class="ln"></div>
+<div class="ln"></div>
+</div></section>
+  </main>
+</div>
+<button class="fab" id="fab" type="button" aria-expanded="false" aria-controls="menu">Índice</button>
+<nav class="menu" id="menu" hidden aria-label="Índice"><a href="#agenda">Agenda de un vistazo</a><a href="#principios">Principios</a><a href="#antes">Antes del evento</a><a href="#bloques">Bloque a bloque</a><a href="#valores">Taller de valores</a><a href="#escucha">Taller de escucha</a><a href="#dificiles">Situaciones difíciles</a><a href="#despues">Después del encuentro</a></nav>
+<script>
+(function(){
+  var saved={};
+  try{saved=JSON.parse(localStorage.getItem('guia-ck')||'{}');}catch(e){}
+  document.querySelectorAll('li.ck input').forEach(function(i){
+    if(saved[i.id]) i.checked=true;
+    i.addEventListener('change',function(){saved[i.id]=i.checked;try{localStorage.setItem('guia-ck',JSON.stringify(saved));}catch(e){}});
+  });
+  var fab=document.getElementById('fab'),menu=document.getElementById('menu');
+  function set(o){menu.hidden=!o;fab.setAttribute('aria-expanded',String(o));}
+  fab.addEventListener('click',function(){set(menu.hidden);});
+  menu.addEventListener('click',function(e){if(e.target.closest('a'))set(false);});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')set(false);});
+  var links=[].slice.call(document.querySelectorAll('.side a'));
+  var heads=links.map(function(a){return document.getElementById(a.getAttribute('href').slice(1));});
+  function spy(){var y=window.scrollY+120,cur=0;heads.forEach(function(h,k){if(h&&h.offsetTop<=y)cur=k;});links.forEach(function(a,k){a.classList.toggle('on',k===cur);});}
+  window.addEventListener('scroll',spy,{passive:true});spy();
+})();
+</script>
+
+</body></html>
